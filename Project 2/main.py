@@ -5,7 +5,7 @@ import numpy as np
 HERE = Path(__file__).parent
 DATA_FOLDER = HERE
 
-diamonds = pd.read_csv(DATA_FOLDER / 'diamonds.csv')
+diamonds = pd.read_csv(DATA_FOLDER / 'diamonds.csv', usecols=["carat","cut","color","clarity","depth","table","price","x","y","z"])
 #The first 5 rows
 print("Print  the first 5 rows")
 print(diamonds.head(10))
@@ -83,8 +83,72 @@ print(diamonds.head(10))
 # diamonds.drop(columns=numeric_columns, inplace=True)
 # print(diamonds.head())
 
+# print("Include only numeric columns in the diamonds DataFrame.")
+# numeric_columns = diamonds.select_dtypes(include='number')
+# diamonds2 = pd.read_csv(DATA_FOLDER / 'diamonds.csv', usecols= numeric_columns )
+# print(diamonds2.head())
 
-print("Include only numeric columns in the diamonds DataFrame.")
-numeric_columns = diamonds.select_dtypes(include='number')
-diamonds2 = pd.read_csv(DATA_FOLDER / 'diamonds.csv', usecols= numeric_columns )
-print(diamonds2.head())
+# print("List of data types to only describe certain types:")
+# print(diamonds.describe(include=['object', 'float64']))
+
+# print("Calculate the mean of each numeric column of diamonds DataFrame")
+# print(diamonds.mean(axis=0, numeric_only=True))
+
+# print("Calculate the mean of each row of diamonds DataFrame.")
+# print(diamonds.mean(axis=1, numeric_only=True))
+
+# print("Calculate the mean of price for each cut of diamonds DataFrame.")
+# grouped = diamonds.groupby('cut')
+# print(grouped["price"].mean())
+# print(diamonds.groupby('cut').price.mean())
+
+# print("Calculate count, minimum, maximum price for each cut of diamonds DataFrame.")
+# grouped = diamonds.groupby('cut')
+# print(grouped["price"].agg(["count", "min", "max"]))
+# print(diamonds.groupby('cut').price.agg(["count", "min", "max"]))
+
+# print("Side-by-side bar plot of the diamonds DataFrame:")
+# grouped = diamonds.groupby('cut')
+# means = grouped.price.mean()
+# plot = means.plot(kind= "bar")
+
+# print("Count how many times each value in cut series of diamonds DataFrame occurs.")
+# grouped = diamonds.groupby('cut')
+# print(diamonds.groupby('cut').cut.count())
+# #or
+# print(diamonds.cut.value_counts())
+
+# print("Display percentages of each value of cut series occurs in diamonds DataFrame.")
+# print(diamonds.cut.value_counts(normalize=True))
+
+# print("Display the unique values in cut series of diamonds DataFrame:")
+# print(diamonds.cut.unique())
+
+# print("Number of unique values in cut series of diamonds DataFrame:")
+# print(diamonds.cut.nunique())
+
+# print("Cross-tabulation of two Series of diamonds DataFrame:")
+# print(pd.crosstab(diamonds.cut, diamonds.price))
+
+# print("Various summary statistics of diamonds DataFrame:")
+# print(diamonds.cut.describe())
+# print(diamonds.carat.describe())
+
+# print("DataFrame of Missing Values (True if missing, False if not missing):")
+# missing_values = diamonds.isna()
+# missing_values2 = diamonds.isnull()
+# print(missing_values.head(10))
+# print(missing_values2.head(10))
+
+# print("Count the number of missing values in each Series of diamonds DataFrame.")
+# print(diamonds.isna().sum())
+
+# print("Check the number of rows and columns and drop those row if 'any' values are missing in a row of diamonds DataFrame.")
+# print("Number of rows and columns:")
+# print(diamonds.shape)
+# print("After droping those rows where values are missing:")
+# print(diamonds.dropna(how='any').shape)
+
+print("New Dataframe:")
+diamonds.set_index('color', inplace=True)
+print(diamonds.head())

@@ -1,11 +1,17 @@
 import pandas as pd
 import numpy as np
+from pathlib import Path
+
+HERE = Path(__file__).parent
+DATA_FOLDER = HERE / "Import" / "Data"
+DATA_FOLDER2 = HERE / "Export"
+
 
 def import_fiels():
 
-    data_site1 = pd.read_csv('final_projects/Karina0615/Import/Data/Data_SITE-1.csv')
-    data_site2 = pd.read_csv('final_projects/Karina0615/Import/Data/Data_SITE-2.csv')
-    data_site3 = pd.read_csv('final_projects/Karina0615/Import/Data/Data_SITE-3.csv')
+    data_site1 = pd.read_csv(DATA_FOLDER / 'Data_SITE-1.csv')
+    data_site2 = pd.read_csv(DATA_FOLDER / 'Data_SITE-2.csv')
+    data_site3 = pd.read_csv(DATA_FOLDER / 'Data_SITE-3.csv')
     # Merging 3 tables into one
     df = pd.concat([data_site1, data_site2, data_site3])
     return df
@@ -70,8 +76,8 @@ adding_new_column_based_on_conditions(df, conditions_promocode, values_promocode
 print(df)
 
 # Import all changes to new csv file
-d = df.to_csv('final_projects/Karina0615/Export/for_vizualization.csv')
-df_new = pd.read_csv('final_projects/Karina0615/Export/for_vizualization.csv')
+d = df.to_csv(DATA_FOLDER2 / 'for_vizualization.csv')
+df_new = pd.read_csv(DATA_FOLDER2 / 'for_vizualization.csv')
 
 print(df_new) 
 
