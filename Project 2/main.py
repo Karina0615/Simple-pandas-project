@@ -149,6 +149,72 @@ print(diamonds.head(10))
 # print("After droping those rows where values are missing:")
 # print(diamonds.dropna(how='any').shape)
 
-print("New Dataframe:")
-diamonds.set_index('color', inplace=True)
-print(diamonds.head())
+# print("New Dataframe:")
+# diamonds.set_index('color', inplace=True)
+# print(diamonds.head())
+
+# print("Access the Series index:")
+# print(diamonds.carat.value_counts().index)
+# print("Access the Series values:")
+# print(diamonds.carat.value_counts().values)
+
+# print("Series sorted by its values:")
+# print(diamonds.cut.value_counts().sort_values())
+# print("Series sorted by its index:")
+# print(diamonds.cut.value_counts().sort_index())
+
+# print("Calculate the multiply of length, width and depth for each cut of diamonds DataFrame.")
+# print((diamonds.x*diamonds.y*diamonds.z).head())
+
+# print("Concatenate the 'diamonds' DataFrame with the 'color' Series:")
+# print(pd.concat([diamonds, diamonds.color], axis=1).head())
+
+# print("All columns:")
+# print(diamonds.loc[0, :])
+
+# print("\nRows 0, 5, 7 and all columns:")
+# print(diamonds.loc[[0, 5, 7], :])
+
+# print("\nRows 2 - 5 and all columns:")
+# print(diamonds.loc[[2, 3, 4, 5], :])
+# print(diamonds.loc[2:5, :])
+
+# print("\nRows 0 through 2 (inclusive), columns ‘color’ and ‘price’:")
+# print(diamonds.loc[0:2, ["color", "price"]])
+
+# print("\nRows in which the ‘cut’  is ‘Premium’, column ‘color’:")
+# print(diamonds.loc[diamonds["cut"] == "Premium", "color"])
+
+# print("\nRows in positions 0 and 1, columns in positions 0 and 3 :")
+# print(diamonds.iloc[[0,1], [0,3]])
+
+# print("\nRows in positions 0 through 4, columns in positions 1 through 4:")
+# print(diamonds.iloc[0:4, 1:4])
+
+# print("\nRows in positions 0 through 4 (exclusive) and all columns :")
+# print(diamonds.iloc[0:5, :])
+
+# print("\nRows 2 through 5 (inclusive), columns in positions 0 through 2 (exclusive):")
+# print(diamonds.iloc[2:6, 0:3])
+
+# print("Concise summary of diamonds DataFrame.")
+# print(diamonds.info())
+
+# print("True memory usage by diamonds DataFrame.")
+# print(diamonds.memory_usage(deep=True))
+# print(diamonds.info(memory_usage="deep"))
+
+# print("\nSample 5 rows from the DataFrame without replacement:")
+# print(diamonds.sample(n=5))
+
+# print("\nSample 75% of diamonds DataFrame's rows without replacement:")
+# result = diamonds.sample(frac=0.75, random_state=99)
+# print(result)
+# print("\nRemaining 25% of the rows:")
+# print(diamonds.loc[~diamonds.index.isin(result.index), :])
+
+# print("\nCount the duplicate items:")
+# print(diamonds.color.duplicated().sum())
+
+print("\nDuplicate rows of diamonds DataFrame:")
+print(diamonds.duplicated().sum())
